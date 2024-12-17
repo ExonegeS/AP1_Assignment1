@@ -112,6 +112,9 @@ Implement the `Shape` interface for all structs.
 
 Use a slice of `Shape` to store multiple shapes and iterate using a loop to print details.
 
+- `PrintShapeDetails(s Shape)`
+  - Endpoint: `http://localhost:8888/shapes/print`
+  
 ## Task 3 - Employees <a name="task_3"></a>
 
 Implement an employee management system using interfaces, maps, and methods.

@@ -11,6 +11,7 @@ import (
 	"syscall"
 
 	"github.com/ExonegeS/AP1_Assignment1/internal/library"
+	"github.com/ExonegeS/AP1_Assignment1/internal/shapes"
 )
 
 func main() {
@@ -28,7 +29,10 @@ func main() {
 
 	librarySvc := library.NewService()
 
+	shapesSvc := shapes.NewService()
+
 	mux.Handle("/library/", library.NewHandler(librarySvc, logger))
+	mux.Handle("/shapes/", shapes.NewHandler(shapesSvc, logger))
 
 	http.Handle("/", mux)
 	run(config, *logger)
