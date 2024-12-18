@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/ExonegeS/AP1_Assignment1/internal/employees"
 	"github.com/ExonegeS/AP1_Assignment1/internal/library"
 	"github.com/ExonegeS/AP1_Assignment1/internal/shapes"
 )
@@ -23,7 +24,7 @@ func main() {
 	}
 
 	var (
-		logger = getLogger("terminal")
+		logger = getLogger("file")
 		mux    = http.NewServeMux()
 	)
 
@@ -31,8 +32,11 @@ func main() {
 
 	shapesSvc := shapes.NewService()
 
+	employeesSvc := employees.NewService()
+
 	mux.Handle("/library/", library.NewHandler(librarySvc, logger))
 	mux.Handle("/shapes/", shapes.NewHandler(shapesSvc, logger))
+	mux.Handle("/employees/", employees.NewHandler(employeesSvc, logger))
 
 	http.Handle("/", mux)
 	run(config, *logger)

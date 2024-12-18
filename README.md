@@ -80,15 +80,19 @@ Create a Library struct that maintains a collection of books using a map[string]
 Implement the following methods for Library:
 
 - `AddBook(book Book)` - Add a new book.
-  - Endpoint: `http://localhost:8888/library/book/add`
-- `GetBook(id string)` - Get a book by ID.
-  - Endpoint: `http://localhost:8888/library/book/{book_uuid}/get`
-- `BorrowBook(id string)` - Borrow a book.
-  - Endpoint: `http://localhost:8888/library/book/{book_uuid}/borrow`
-- `ReturnBook(id string)` - Return a borrowed book.
-  - Endpoint: `http://localhost:8888/library/book/{book_uuid}/return`
+  - Endpoint: `POST http://localhost:8888/library/books/add`
 - `ListBooks()` - List all books in the library.
-  - Endpoint: `http://localhost:8888/library/book/list`
+  - Endpoint: `GET http://localhost:8888/library/books/list`
+- `GetBook(id string)` - Get a book by ID.
+  - Endpoint: `GET http://localhost:8888/library/books/{book_uuid}`
+- `PutBook(id string)` - Update existing book.
+  - Endpoint: `PUT http://localhost:8888/library/books/{book_uuid}`
+- `DeleteBook(id string)` - Delete existing book.
+  - Endpoint: `DELETE http://localhost:8888/library/books/{book_uuid}`
+- `BorrowBook(id string)` - Borrow a book.
+  - Endpoint: `http://localhost:8888/library/books/{book_uuid}/borrow`
+- `ReturnBook(id string)` - Return a borrowed book.
+  - Endpoint: `PUSThttp://localhost:8888/library/books/{book_uuid}/return`
 
 Use loops to iterate over the books in the map.
 
@@ -130,12 +134,20 @@ Create structs:
 
 Implement the `Employee` interface for both structs.
 
-Create a `Company` struct that maintains employees in a `map[string]Employee`.
-
 Implement methods:
+- `AddEmployee(employee Employee)` - Add a new employee.
+  - Endpoint: `POSThttp://localhost:8888/employees/add`
+- `ListEmployees()` - List all employees in the company.
+  - Endpoint: `GET http://localhost:8888/employees/list`
+- `GetEmployeeDetails(id string)` - Get a employee details in readable format.
+  - Endpoint: `GET http://localhost:8888/employees/{employee_id}/details`
+- `GetEmployee(id string)` - Get a employee by ID.
+  - Endpoint: `GET http://localhost:8888/employees/{employee_id}`
+- `PutEmployee(id string)` - Update existing book.
+  - Endpoint: `PUT http://localhost:8888/employees/{employee_id}`
+- `DeleteEmployee(id string)` - Delete existing employee.
+  - Endpoint: `DELETE http://localhost:8888/employees/{employee_id}`
 
-- `AddEmployee(emp Employee)` - Add a new employee.
-- `ListEmployees()` - List all employees.
 
 Use a loop to display employee details.
 
