@@ -7,6 +7,8 @@ type Service interface {
 	GetBook(input GetBookInput) (GetBookResponse, error)
 	BorrowBook(input BorrowBookInput) (BorrowBookResponse, error)
 	ReturnBook(input BorrowBookInput) (BorrowBookResponse, error)
+	PutBook(input PutBookInput) (PutBookResponse, error)
+	DeleteBook(input DeleteBookInput) (DeleteBookResponse, error)
 	ListBooks() ListBooksResponse
 }
 
@@ -26,6 +28,26 @@ type (
 	}
 	GetBookResponse struct {
 		Book domain.Book `json:"book"`
+	}
+)
+
+type (
+	PutBookInput struct {
+		BookID string
+		Title  string `json:"title"`
+		Author string `json:"author"`
+	}
+	PutBookResponse struct {
+		Book domain.Book `json:"book"`
+	}
+)
+
+type (
+	DeleteBookInput struct {
+		BookID string
+	}
+	DeleteBookResponse struct {
+		Status domain.BookStatus `json:"book_status"`
 	}
 )
 

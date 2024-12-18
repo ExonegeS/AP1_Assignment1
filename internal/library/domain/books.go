@@ -8,6 +8,7 @@ const (
 	BookStatusToDo     BookStatus = "TO_DO"
 	BookStatusBooked   BookStatus = "BOOKED"
 	BookStatusAvaiable BookStatus = "AVAILABLE"
+	BookStatusDeleted  BookStatus = "DELETED"
 )
 
 type Book struct {
@@ -22,6 +23,8 @@ type BooksRepository interface {
 	BorrowBook(input BorrowBookInput) error
 	ReturnBook(input BorrowBookInput) error
 	GetBook(input GetBookInput) (Book, error)
+	PutBook(input PutBookInput) (Book, error)
+	DeleteBook(input DeleteBookInput) error
 	ListBooks() []Book
 }
 
@@ -35,6 +38,14 @@ type (
 		BookID string
 	}
 	GetBookInput struct {
+		BookID string
+	}
+	PutBookInput struct {
+		BookID string
+		Title  string `json:"title"`
+		Author string `json:"author"`
+	}
+	DeleteBookInput struct {
 		BookID string
 	}
 )

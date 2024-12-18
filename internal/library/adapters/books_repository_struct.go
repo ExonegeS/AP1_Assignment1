@@ -89,6 +89,40 @@ func (b *BooksRepositoryStruct) ReturnBook(input domain.BorrowBookInput) error {
 	return nil
 }
 
+func (b *BooksRepositoryStruct) PutBook(input domain.PutBookInput) (domain.Book, error) {
+	// Update the record
+
+	book, ok := b.data[input.BookID]
+	if !ok {
+		return domain.Book{}, domain.ErrBookNotFound
+	}
+
+	book.Title = input.Title
+	book.Author = input.Author
+
+	b.data[input.BookID] = book
+	return book, nil
+}
+
+func (b *BooksRepositoryStruct) DeleteBook(input domain.DeleteBookInput) error {
+	// Delete a book from repository
+
+	bookID := input.BookID
+
+	book, ok := b.data[bookID]
+	if !ok {
+		return domain.ErrBookNotFound
+	}
+
+	if book.IsBorrowed {
+		return domain.ErrBookAlreadyBorrowed
+	}
+
+	delete(b.data, bookID)
+
+	return nil
+}
+
 func (b *BooksRepositoryStruct) ListBooks() []domain.Book {
 	// List all books in the repository
 
