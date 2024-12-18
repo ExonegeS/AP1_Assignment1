@@ -10,6 +10,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/ExonegeS/AP1_Assignment1/internal/bank"
 	"github.com/ExonegeS/AP1_Assignment1/internal/employees"
 	"github.com/ExonegeS/AP1_Assignment1/internal/library"
 	"github.com/ExonegeS/AP1_Assignment1/internal/shapes"
@@ -34,9 +35,12 @@ func main() {
 
 	employeesSvc := employees.NewService()
 
+	bankSvc := bank.NewService()
+
 	mux.Handle("/library/", library.NewHandler(librarySvc, logger))
 	mux.Handle("/shapes/", shapes.NewHandler(shapesSvc, logger))
 	mux.Handle("/employees/", employees.NewHandler(employeesSvc, logger))
+	mux.Handle("/bank/", bank.NewHandler(bankSvc, logger))
 
 	http.Handle("/", mux)
 	run(config, *logger)
