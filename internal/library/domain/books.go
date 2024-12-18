@@ -28,8 +28,8 @@ type BooksRepository interface {
 type (
 	AddBookInput struct {
 		BookID string
-		Title  string
-		Author string
+		Title  string `json:"title"`
+		Author string `json:"author"`
 	}
 	BorrowBookInput struct {
 		BookID string

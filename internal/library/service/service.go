@@ -12,8 +12,8 @@ type Service interface {
 
 type (
 	AddBookInput struct {
-		Title  string
-		Author string
+		Title  string `json:"title"`
+		Author string `json:"author"`
 	}
 	AddBookResponse struct {
 		Book domain.Book `json:"book"`
