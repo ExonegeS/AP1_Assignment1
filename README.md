@@ -136,7 +136,7 @@ Implement the `Employee` interface for both structs.
 
 Implement methods:
 - `AddEmployee(employee Employee)` - Add a new employee.
-  - Endpoint: `POSThttp://localhost:8888/employees/add`
+  - Endpoint: `POST http://localhost:8888/employees/add`
 - `ListEmployees()` - List all employees in the company.
   - Endpoint: `GET http://localhost:8888/employees/list`
 - `GetEmployeeDetails(id string)` - Get a employee details in readable format.
@@ -172,10 +172,14 @@ Write a function `Transaction(account *BankAccount, transactions []float64)` tha
 - Positive amounts are deposits.
 - Negative amounts are withdrawals.
 
-Create a runner function to interact with this system using loop-based input commands:
-
-1. Deposit
-2. Withdraw
-3. Get Balance
-4. Exit
-
+Implement methods:
+- `AddWallet(wallet Wallet)` - Add a new wallet.
+  - Endpoint: `POST http://localhost:8888/bank/add`
+- `GetBalance()` - Retrieve a wallet's current contents.
+  - Endpoint: `GET http://localhost:8888/bank/{wallet_id}/balance`
+- `CreateTransation(transation Transation)` - Create a request for later processing.
+  - Endpoint: `POST http://localhost:8888/bank/{wallet_id}/add`
+- `ProcessTransactions(walletID uuid)` - Process all transactions for the wallet.
+  - Endpoint: `POST http://localhost:8888/bank/{wallet_id}/commit`
+- `GetTransactions(walletID uuid)` - Retrieve all remaining transactions.
+  - Endpoint: `GET http://localhost:8888/bank/{wallet_id}`
